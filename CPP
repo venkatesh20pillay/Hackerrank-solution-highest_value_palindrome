@@ -1,0 +1,67 @@
+string highestValuePalindrome(string s, int n, int k) {
+    int i,j;
+    int a[s.size()]={0};
+    if(n%2==0)
+    {
+     i=(n/2)-1;
+    j=n/2;
+    }
+    else
+    {
+        i=((n)/2)-1;
+        j=((n)/2)+1;
+    }
+    for(;i>=0&&j<n;i--,j++)
+    {   if(k!=0)
+    {   
+        
+        if(s[i]!=s[j])
+        {
+            if(s[i]>s[j])
+            {
+                s[j]=s[i];
+                a[j]=1;
+                k--;
+            }
+        else
+        {
+            s[i]=s[j];
+            a[i]=1;
+            k--;
+        }
+        }
+    }
+     if(s[i]!=s[j])
+         return "-1";
+    }
+    i=0;
+    j=n-1;
+    while(k>0&&(i<j))
+    {
+        if(a[i]==1||a[j]==1)
+        {   if(s[i]!='9'||s[j]!='9')
+        {s[i]='9';
+            s[j]='9';
+            
+            k--;
+        }
+        }
+        else if(k>=2)
+        {   if(s[i]!='9'&&s[j]!='9')
+        {s[j]='9';
+            s[i]='9';
+           
+            k=k-2;
+        }
+        }
+        i++;
+        j--;
+    }
+    if(k>0&&(n%2==1))
+    {
+        s[(n)/2]='9';
+    }
+    
+    return s;
+
+}
